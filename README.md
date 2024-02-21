@@ -1,0 +1,1 @@
+Développer une application console en Java pour le jeu du Blackjack qui a pour objectif de battre le croupier(banque) en ayant une main dont la valeur est plus proche de 21 que celle du croupier, sans dépasser 21.

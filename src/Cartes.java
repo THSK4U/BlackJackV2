@@ -1,11 +1,12 @@
-public class Cartes {
+public class Cartes implements ICartes {
 
     private static int Valeurmain;
+    @Override
+    public int getValeurmain(){
 
-    public static int getValeurmain(){
         return Valeurmain;
     }
-    public static void cartes() {
+    public void cartes() {
         PaquetCartes paquetCartes = new PaquetCartes();
         paquetCartes.shuffleCards();
         Carte randomCard1 = paquetCartes.getRandomCard();

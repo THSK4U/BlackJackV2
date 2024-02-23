@@ -1,17 +1,26 @@
 public class BlackJack {
-    public static void CroupierTour() {
-        while (Hand.getValeurmaintotalcro() < 17) {
-            Hand.AjouterCartCroupir();
+    Hand hand = new Hand();
+    Main Main = new Main();
+    public void CroupierTour() {
+
+        while (hand.getValeurmaintotalcro() < 17) {
+            hand.AjouterCartCroupir();
         }
         DeterminerResultat();
         Main.handle();
     }
 
-    public static void JoueurTour() {
-        Hand.AjouterCart();
+    public void JoueurTour() {
+        if (hand.getValeurMaintotal() < 21) {
+            hand.AjouterCart();
+        }else if (hand.getValeurMaintotal() == 21){
+            DeterminerResultat();
+            Main.handle();
+        }
     }
 
-    public static void DeterminerResultat() {
+    public void DeterminerResultat() {
+        Hand Hand = new Hand();
         System.out.println("Votre main : " + Hand.getValeurMaintotal() + " || Main du croupier : " + Hand.getValeurmaintotalcro());
         if (Hand.getValeurMaintotal() > 21 && Hand.getValeurmaintotalcro() < 21) {
             System.out.println("******** Vous avez dépassé 21 :( *******");
@@ -23,7 +32,7 @@ public class BlackJack {
             System.out.println("------- Joueur a gagné -------");
         } else if (Hand.getValeurmaintotalcro() > Hand.getValeurMaintotal() && Hand.getValeurmaintotalcro() < 21) {
             System.out.println("------- Croupier a gagné -------");
-        } else{
+        } else if (Hand.getValeurMaintotal() == Hand.getValeurmaintotalcro()) {
             System.out.println("------ Match nul -----");
         }
 

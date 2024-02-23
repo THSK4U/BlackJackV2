@@ -1,19 +1,22 @@
 import java.util.Scanner;
 
 public class Croupier {
-    public static void HitStand() {
+
+    public void HitStand() {
+        Hand Hand = new Hand();
+        BlackJack blackJack = new BlackJack();
         Hand.hand();
         while (Hand.getValeurMaintotal() < 21) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Hit or 2. Stand");
             int choice = scanner.nextInt();
             if (choice == 1) {
-                BlackJack.JoueurTour();
+                blackJack.JoueurTour();
             } else if (choice == 2) {
-                BlackJack.CroupierTour();
+                blackJack.CroupierTour();
             } else {
                 System.out.println("Invalid choice.");
-                }
             }
         }
     }
+}

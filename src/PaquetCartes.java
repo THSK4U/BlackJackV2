@@ -1,10 +1,6 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
-
-class Carte {
+import java.util.*;
+import java.sql.*;
+class Carte implements IPaquetCartes {
     private String forme;
     private int valeur;
 
@@ -12,28 +8,40 @@ class Carte {
         this.forme = forme;
         this.valeur = valeur;
     }
-
+    @Override
     public String getForme() {
         return forme;
     }
-
+    @Override
     public int getValeur() {
         return valeur;
     }
 }
 
-
 public class PaquetCartes {
+
     private List<Carte> cartes;
 
     public PaquetCartes() {
-        cartes = new ArrayList<Carte>();
-        for (String forme : new String[]{"carreau", "coure", "pique", "trefle"}) {
-            for (int valeur : new int[]{1,2,3,4,5,6,7,8,9,10,10,10,10}) {
-                cartes.add(new Carte(forme, valeur));
+        cartes = new ArrayList<>();
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BLACK", "root", "TAHAtaha");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM black.carte");
+            while (rs.next()) {
+                String couleur_carte = rs.getString("couleur_carte");
+                int valeur_carte = rs.getInt("valeur_carte");
+                Carte carte = new Carte(couleur_carte, valeur_carte);
+                cartes.add(carte);
             }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("An error occurred: " + e.getMessage());
         }
-    }
+     }
+
+
+
 
     public void shuffleCards() {
         Collections.shuffle(cartes);
@@ -47,5 +55,3 @@ public class PaquetCartes {
         return cartes.remove(new Random().nextInt(cartes.size()));
     }
 }
-
-

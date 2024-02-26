@@ -1,1 +1,1 @@
-Développer une application console en Java pour le jeu du Blackjack qui a pour objectif de battre le croupier(banque) en ayant une main dont la valeur est plus proche de 21 que celle du croupier, sans dépasser 21.
+L'objectif de cette partie du projet est d'ajouter des interfaces pour améliorer la structure du code et faciliter l'implémentation des fonctionnalités du jeu de Blackjack, ainsi que mettre en place une base de données relationnelle en se basant sur la conception UML réalisée dans la partie 1 du jeu BlackJack.
